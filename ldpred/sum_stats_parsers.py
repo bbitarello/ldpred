@@ -170,7 +170,7 @@ def get_beta(pval_read, raw_beta, beta_read, line_dict, header_dict, se,
         if pval_read==0 or not isfinite(stats.norm.ppf(pval_read)):
             #Attempt to Parse SEs to infer Z-score
             if not se in header_dict:
-                return None
+                return Non
             else:
                 se_read = float(line_dict[header_dict[se]])
                 if se_read==0 or not isfinite(se_read):
@@ -180,9 +180,7 @@ def get_beta(pval_read, raw_beta, beta_read, line_dict, header_dict, se,
                 return get_beta_from_se(beta_read, se_read, eff_type, raw_beta, N)
         else:               
             #return sp.sign(raw_beta) * stats.norm.ppf(pval_read / 2.0)/ sp.sqrt(N) 
-            return -1 * sp.sign(raw_beta) * stats.norm.ppf(pval_read / 2.0)/ sp.sqrt(N)
-
-
+                return -1 * sp.sign(raw_beta) * stats.norm.ppf(pval_read / 2.0)/ sp.sqrt(N)     
 
 def parse_sum_stats_custom(filename=None, bimfile=None, only_hm3=False, hdf5_file=None, n=None, ch=None, pos=None,
                     A1=None, A2=None, reffreq=None, case_freq=None, control_freq=None, case_n=None,
